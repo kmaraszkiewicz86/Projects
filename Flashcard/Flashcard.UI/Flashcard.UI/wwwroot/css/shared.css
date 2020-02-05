@@ -1,0 +1,20 @@
+﻿input.valid  {
+	border-left: 5px solid #42A948; /* green */
+}
+input.input-validation-error {
+	border-left: 5px solid #a94442; /* red */
+}
+
+input.valid:focus {
+	border: 0px;
+	border-left: 5px solid #42A948; /* green */
+}
+
+input.input-validation-error:focus {
+	border: 0px;
+	border-left: 5px solid #a94442; /* red */
+}
+
+.hidden {
+	display: none;
+}

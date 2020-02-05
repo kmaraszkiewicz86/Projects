@@ -1,0 +1,4 @@
+﻿To create db on server run below comands
+1. Enable-Migrations
+2. Add-Migration Init
+3. Update-Database
