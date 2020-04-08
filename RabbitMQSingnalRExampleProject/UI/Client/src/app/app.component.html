@@ -1,0 +1,8 @@
+<table>
+  <tr>
+    <th>Message</th>
+  </tr>
+  <tr *ngFor="let message of signalRService.data">
+    {{message.Message}}
+  </tr>
+</table>

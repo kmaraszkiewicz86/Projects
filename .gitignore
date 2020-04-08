@@ -74,3 +74,13 @@
 /Flashcard/Flashcard.WebAPI/Flashcard.WebAPI/Properties/PublishProfiles
 /Desktop/SystemTemperatureChecker/SystemTemperatureChecker/obj/Release
 /Timer/Timer/obj/Release
+.DS_Store
+RabbitMQSingnalRExampleProject/Common/obj/
+RabbitMQSingnalRExampleProject/Common/bin/
+RabbitMQSingnalRExampleProject/Services/SenderApp/SenderApp/obj
+RabbitMQSingnalRExampleProject/Services/SenderApp/SenderApp/bin
+RabbitMQSingnalRExampleProject/UI/node_modules
+RabbitMQSingnalRExampleProject/WebAPI/WebApi/.vs/
+RabbitMQSingnalRExampleProject/WebAPI/WebApi/WebApi/bin/
+RabbitMQSingnalRExampleProject/WebAPI/WebApi/WebApi/obj/
+RabbitMQSingnalRExampleProject/Services/SenderApp/.vs/
