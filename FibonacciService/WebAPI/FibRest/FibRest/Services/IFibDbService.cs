@@ -6,7 +6,7 @@ namespace FibRest.Services
 {
     public interface IFibDbService
     {
-        Task CalculateAsync(FibRequest model);
+        Task<FibResultResponse> CalculateAsync(FibRequest model);
 
         IEnumerable<FibResultResponse> GetAll();
     }

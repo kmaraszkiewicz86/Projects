@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FibRest.Models;
 using FibRest.Services;
@@ -36,9 +37,20 @@ namespace FibRest.Controllers
                 });
             }
 
-            await _fibDbService.CalculateAsync(model);
-
-            return Ok();
+            try
+            {
+                return Ok(await _fibDbService.CalculateAsync(model));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    ErrorMessages = new[]
+                    {
+                        e.Message
+                    }
+                });
+            }
         }
     }
 }

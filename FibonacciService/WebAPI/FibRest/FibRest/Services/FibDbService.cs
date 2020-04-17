@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FibRest.Core;
@@ -19,16 +18,24 @@ namespace FibRest.Services
             _fibCalcService = fibCalcService;
         }
 
-        public async Task CalculateAsync(FibRequest model)
+        public async Task<FibResultResponse> CalculateAsync(FibRequest model)
         {
-            var result = _fibCalcService.Calculate(model.NumberToCalculate);
-            await _db.FibResults.AddAsync(new FibResult
+            var result = new FibResult
             {
-                Result = result,
+                Result = _fibCalcService.Calculate(model.NumberToCalculate),
                 ElementNumber = model.NumberToCalculate
-            });
+            };
+
+            await _db.FibResults.AddAsync(result);
 
             await _db.SaveChangesAsync();
+
+            return new FibResultResponse
+            {
+                Id = result.Id,
+                ElementNumber = result.ElementNumber,
+                Result = result.Result
+            };
         }
 
         public IEnumerable<FibResultResponse> GetAll()
