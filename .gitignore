@@ -84,3 +84,6 @@ RabbitMQSingnalRExampleProject/WebAPI/WebApi/.vs/
 RabbitMQSingnalRExampleProject/WebAPI/WebApi/WebApi/bin/
 RabbitMQSingnalRExampleProject/WebAPI/WebApi/WebApi/obj/
 RabbitMQSingnalRExampleProject/Services/SenderApp/.vs/
+FibonacciService/WebAPI/FibRest/FibRest/bin/
+FibonacciService/WebAPI/FibRest/FibRest/obj/
+FibonacciService/WebAPI/FibRest/.vs/
