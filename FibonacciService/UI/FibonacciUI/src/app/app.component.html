@@ -2,8 +2,8 @@
   <div class="inner">
     <h3 class="masthead-brand">Fibonacci calculator</h3>
     <nav class="nav nav-masthead justify-content-center">
-      <a class="nav-link active" routerLink="/home" >Home</a>
-      <a class="nav-link" routerLink="/calculator" >Calculator</a>
+      <a class="nav-link" [class.active]="isActive('/home')" routerLink="/home" >Home</a>
+      <a class="nav-link" [class.active]="isActive('/calculator')" routerLink="/calculator" >Calculator</a>
     </nav>
   </div>
 </header>

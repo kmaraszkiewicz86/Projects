@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FibResultService } from 'src/app/services/fib-result.service';
+import { FibResult } from 'src/app/models/fib-result.model';
 
 @Component({
   selector: 'app-history-list',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryListComponent implements OnInit {
 
-  constructor() { }
+  public fibResults: FibResult[] = [];
+
+  constructor(private service: FibResultService) { }
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  private getAll() {
+    this.service.getAll().subscribe(res => {
+      this.fibResults = res
+    }, err => {
+
+    })
   }
 
 }

@@ -1,7 +1,20 @@
-<form>
+
+
+<form [formGroup]="formGroup" (ngSubmit)="add()">
+
+    <div *ngIf="isErrorMessagesExists" class="alert alert-danger" role="alert">
+      <ul>
+        <p *ngFor="let errorMessage of errorMessages">{{errorMessage}}</p>
+      </ul>
+    </div>
+
+    <div *ngIf="isAddedItemExists" class="alert alert-success" role="alert">
+      Added item with fibonacci results: {{addedItem.result}} using {{addedItem.elementNumber}} fibonacci number
+    </div>
+
     <div class="form-group">
       <label for="NumberOfFib">Fibonacci number to calculate</label>
-      <input type="number" class="form-control" id="NumberOfFib">
+      <input formControlName="numberToCalculate" type="number" class="form-control" id="NumberOfFib">
     </div>
-    <button type="submit" class="btn btn-primary">Calculate and save into database</button>
+    <button [disabled]="!formGroup.valid" type="submit" class="btn btn-primary">Calculate and save into database</button>
 </form>
