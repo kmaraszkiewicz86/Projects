@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FibRest.Core;
-using FibRest.Models;
+using Core.Core;
+using Core.Models;
 
-namespace FibRest.Services
+namespace Core.Services
 {
     public class FibDbService: IFibDbService
     {

@@ -87,3 +87,8 @@ RabbitMQSingnalRExampleProject/Services/SenderApp/.vs/
 FibonacciService/WebAPI/FibRest/FibRest/bin/
 FibonacciService/WebAPI/FibRest/FibRest/obj/
 FibonacciService/WebAPI/FibRest/.vs/
+FibonacciService/Services/FibonacciExecutor/FibonacciExecutor/bin/
+FibonacciService/Services/FibonacciExecutor/FibonacciExecutor/obj/
+FibonacciService/Services/FibonacciExecutor/.vs/
+FibonacciService/Shared/Core/bin/
+FibonacciService/Shared/Core/obj/

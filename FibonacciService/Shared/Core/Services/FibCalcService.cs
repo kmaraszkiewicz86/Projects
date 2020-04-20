@@ -1,4 +1,4 @@
-﻿namespace FibRest.Services
+﻿namespace Core.Services
 {
     public class FibCalcService: IFibCalcService
     {

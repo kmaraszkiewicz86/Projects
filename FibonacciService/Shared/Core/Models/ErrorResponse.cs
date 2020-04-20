@@ -1,5 +1,5 @@
 ﻿using System;
-namespace FibRest.Models
+namespace Core.Models
 {
     public class ErrorResponse
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FibRest.Models;
+using Core.Models;
 
-namespace FibRest.Services
+namespace Core.Services
 {
     public interface IFibDbService
     {

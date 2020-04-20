@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace FibRest.Models
+namespace Core.Models
 {
     public class FibRequest
     {

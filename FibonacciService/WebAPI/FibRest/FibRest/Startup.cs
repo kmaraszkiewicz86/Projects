@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FibRest.Core;
-using FibRest.Services;
+using Core.Core;
+using Core.Helpers;
+using Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace FibRest
 {
@@ -40,7 +34,7 @@ namespace FibRest
                 });
             });
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionBuilderHelper.GetDefaultConnectionString()));
 
             services.AddScoped<IFibCalcService, FibCalcService>();
             services.AddScoped<IFibDbService, FibDbService>();
