@@ -4,9 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FibonacciExecutor"
+        xmlns:userControls="clr-namespace:FibonacciExecutor.UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
 
-    </Grid>
+        <TabControl Grid.Row="0">
+            <TabItem Header="Control buttons">
+                <Grid Background="#FFE5E5E5">
+                    <userControls:ControlPanelUserControl />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Setting preview">
+                <Grid Background="#FFE5E5E5">
+                    <userControls:SettingsUserControl />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <ListView Grid.Row="1" Margin="10,10,0,13" Name="ListView1" >
+            <ListViewItem Content="Coffie"></ListViewItem>
+            <ListViewItem Content="Tea"></ListViewItem>
+            <ListViewItem Content="Orange Juice"></ListViewItem>
+            <ListViewItem Content="Milk"></ListViewItem>
+            <ListViewItem Content="Iced Tea"></ListViewItem>
+            <ListViewItem Content="Mango Shake"></ListViewItem>
+        </ListView>
+</Grid>
 </Window>
