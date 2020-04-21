@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Core.Services;
+using FibonacciExecutor.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FibonacciExecutor
@@ -10,23 +11,26 @@ namespace FibonacciExecutor
     /// </summary>
     public partial class App : Application
     {
-        public IServiceProvider ServiceProvider { get; private set; }
+        public IServiceProvider _serviceProvider { get; private set; }
 
-        protected override void OnStartup(StartupEventArgs e)
+        public App()
         {
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
-
-            ServiceProvider = serviceCollection.BuildServiceProvider();
-
-            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+            _serviceProvider = serviceCollection.BuildServiceProvider();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IRabbitMqService, RabbitMqService>();
-            services.AddTransient(typeof(MainWindow));
+            services.AddSingleton<FibonacciCollectionViewModel>();
+            services.AddSingleton<MainWindow>();
+        }
+
+        private void OnStartup(object sender, StartupEventArgs e)
+        {
+            var mainWindow = _serviceProvider.GetService<MainWindow>();
+            mainWindow.Show();
         }
     }
 }

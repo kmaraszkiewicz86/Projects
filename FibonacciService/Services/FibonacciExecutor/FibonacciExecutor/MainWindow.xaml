@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FibonacciExecutor"
         xmlns:userControls="clr-namespace:FibonacciExecutor.UserControls"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -26,11 +27,11 @@
             </TabItem>
         </TabControl>
 
-        <ListView Grid.Row="1" Margin="10" x:Name="actionListView">
+        <ListView Grid.Row="1" ItemsSource="{Binding FibonacciViewModels}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="NumberToCalculate"  DisplayMemberBinding="{Binding NumberToCalculate}"/>
+                    <GridViewColumn Header="Result"  DisplayMemberBinding="{Binding Result}"/>
                 </GridView>
             </ListView.View>
         </ListView>

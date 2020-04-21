@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 using Core.Services;
+using FibonacciExecutor.ViewModels;
 
 namespace FibonacciExecutor
 {
@@ -10,9 +11,20 @@ namespace FibonacciExecutor
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private FibonacciCollectionViewModel _fibonacciCollectionViewModel;
+
+        public MainWindow(FibonacciCollectionViewModel fibonacciCollectionViewModel)
         {
+            _fibonacciCollectionViewModel = fibonacciCollectionViewModel;
+
             InitializeComponent();
+            DataContext = _fibonacciCollectionViewModel;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _fibonacciCollectionViewModel.AddItems();
+        }
+
     }
 }
