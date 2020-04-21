@@ -26,13 +26,13 @@
             </TabItem>
         </TabControl>
 
-        <ListView Grid.Row="1" Margin="10,10,0,13" Name="ListView1" >
-            <ListViewItem Content="Coffie"></ListViewItem>
-            <ListViewItem Content="Tea"></ListViewItem>
-            <ListViewItem Content="Orange Juice"></ListViewItem>
-            <ListViewItem Content="Milk"></ListViewItem>
-            <ListViewItem Content="Iced Tea"></ListViewItem>
-            <ListViewItem Content="Mango Shake"></ListViewItem>
+        <ListView Grid.Row="1" Margin="10" x:Name="actionListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
         </ListView>
-</Grid>
+    </Grid>
 </Window>
