@@ -2,12 +2,20 @@
 {
     public class FibCalcService: IFibCalcService
     {
-        public long Calculate(int x)
+        public long Calculate(long x)
         {
-            if (x < 2)
-                return x;
+            long first = 0;
+            long second = 1;
+            long result = 0;
 
-            return Calculate(x - 2) + Calculate(x - 1);
+            for (long index = 1; index < x; index++)
+            {
+                result = first + second;
+                first = second;
+                second = result;
+            }
+
+            return result;
         }
     }
 }

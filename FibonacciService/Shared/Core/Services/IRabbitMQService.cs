@@ -1,14 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Core.Models;
+using RabbitMQ.Client.Events;
 
 namespace Core.Services
 {
     public interface IRabbitMqService
     {
+        event EventHandler<BasicDeliverEventArgs> Received;
+
+        void Start();
+
         void Send(FibRequest model);
 
-        FibRequest Fetch();
+        void StartRevivingRequests();
+
+        void BasicConsume();
     }
 }

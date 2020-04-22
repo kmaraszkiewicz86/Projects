@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Core.Services;
-
-namespace FibonacciExecutor.ViewModels
+﻿namespace FibonacciExecutor.ViewModels
 {
     public class FibonacciViewModel: BaseViewModel
     {
@@ -28,6 +23,18 @@ namespace FibonacciExecutor.ViewModels
             {
                 _result = value;
                 OnPropertyChanged("Result");
+            }
+        }
+
+        private string _time;
+
+        public string Time
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+                OnPropertyChanged("Time");
             }
         }
     }

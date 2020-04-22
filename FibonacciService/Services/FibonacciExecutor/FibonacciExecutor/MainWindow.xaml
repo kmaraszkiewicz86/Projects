@@ -30,7 +30,8 @@
         <ListView Grid.Row="1" ItemsSource="{Binding FibonacciViewModels}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="NumberToCalculate"  DisplayMemberBinding="{Binding NumberToCalculate}"/>
+                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time}"/>
+                        <GridViewColumn Header="NumberToCalculate"  DisplayMemberBinding="{Binding NumberToCalculate}"/>
                     <GridViewColumn Header="Result"  DisplayMemberBinding="{Binding Result}"/>
                 </GridView>
             </ListView.View>

@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
+using Core.AppSettings;
+using Core.Core;
+using Core.Helpers;
 using Core.Services;
 using FibonacciExecutor.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FibonacciExecutor
@@ -22,7 +28,17 @@ namespace FibonacciExecutor
 
         private void ConfigureServices(IServiceCollection services)
         {
+            IConfiguration configuration = ConnectionBuilderHelper.BuildDefault();
+
+            services.Configure<RabbitMq>
+                (configuration.GetSection(nameof(RabbitMq)));
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(configuration["ConnectionString"]));
+
             services.AddScoped<IRabbitMqService, RabbitMqService>();
+            services.AddScoped<IFibCalcService, FibCalcService>();
+            services.AddScoped<IFibDbService, FibDbService>();
             services.AddSingleton<FibonacciCollectionViewModel>();
             services.AddSingleton<MainWindow>();
         }

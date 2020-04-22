@@ -4,13 +4,17 @@ namespace Core.Helpers
 {
     public static class ConnectionBuilderHelper
     {
-        public static string GetDefaultConnectionString()
+        public static IConfiguration BuildDefault()
         {
-            var connection = new ConfigurationBuilder()
+            return new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
+        }
 
-            return connection["ConnectionString"];
+        public static string GetDefaultConnectionString()
+        {
+
+            return BuildDefault()["ConnectionString"];
         }
     }
 }

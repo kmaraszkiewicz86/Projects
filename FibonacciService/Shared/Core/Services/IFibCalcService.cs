@@ -2,6 +2,6 @@
 {
     public interface IFibCalcService
     {
-        long Calculate(int x);
+        long Calculate(long x);
     }
 }

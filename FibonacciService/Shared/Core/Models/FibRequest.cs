@@ -7,6 +7,6 @@ namespace Core.Models
     {
         [Required]
         [Range(2, 100)]
-        public int NumberToCalculate { get; set; }
+        public long NumberToCalculate { get; set; }
     }
 }

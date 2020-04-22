@@ -6,7 +6,7 @@ namespace Core.Services
 {
     public interface IFibDbService
     {
-        Task<FibResultResponse> CalculateAsync(FibRequest model);
+        Task<FibResultResponse> CalculateAsync(FibResult model);
 
         IEnumerable<FibResultResponse> GetAll();
     }

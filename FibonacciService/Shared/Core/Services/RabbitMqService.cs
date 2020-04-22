@@ -1,20 +1,84 @@
-﻿using Core.Models;
+﻿using System;
+using System.Text;
+using System.Text.Json;
+using Core.AppSettings;
+using Core.Models;
+using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 namespace Core.Services
 {
-    public class RabbitMqService: IRabbitMqService
+    public class RabbitMqService : IRabbitMqService
     {
-        public void Send(FibRequest model)
+        public event EventHandler<BasicDeliverEventArgs> Received;
+
+        private RabbitMq _rabbitMqSettings;
+        private ConnectionFactory _factory;
+        private IConnection _connection;
+        private IModel _channel;
+        private EventingBasicConsumer _consumer;
+
+        public RabbitMqService(IOptions<RabbitMq> rabbitMqSettingsOptions)
         {
-            
+            _rabbitMqSettings = rabbitMqSettingsOptions.Value;
+
+            _factory = new ConnectionFactory()
+            {
+                HostName = _rabbitMqSettings.Hostname
+            };
         }
 
-        public FibRequest Fetch()
+        public void Start()
         {
-            return new FibRequest
+            _connection = _factory.CreateConnection();
+            _channel = _connection.CreateModel();
+
+            _channel.QueueDeclare(queue: _rabbitMqSettings.QueueName,
+                durable: false,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
+        }
+
+        public void Send(FibRequest model)
+        {
+            var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(model));
+
+            _channel.BasicPublish(exchange: "",
+                routingKey: _rabbitMqSettings.QueueName,
+                basicProperties: null,
+                body: body);
+        }
+
+        public void StartRevivingRequests()
+        {
+            _consumer = new EventingBasicConsumer(_channel);
+
+            if (Received == null)
+                throw new NullReferenceException(nameof(Received));
+
+            _consumer.Received += Received;
+        }
+
+        public void BasicConsume()
+        {
+            _channel.BasicConsume(queue: _rabbitMqSettings.QueueName,
+                autoAck: true,
+                consumer: _consumer);
+        }
+
+        ~RabbitMqService()
+        {
+            if (Received != null)
             {
-                NumberToCalculate = 10
-            };
+                _consumer.Received -= Received;
+            }
+            
+            _channel?.Dispose();
+            _connection?.Dispose();
+            _consumer = null;
+            _factory = null;
         }
     }
 }

@@ -10,31 +10,22 @@ namespace Core.Services
     {
         private readonly AppDbContext _db;
 
-        private readonly IFibCalcService _fibCalcService;
-
-        public FibDbService(AppDbContext db, IFibCalcService fibCalcService)
+        public FibDbService(AppDbContext db)
         {
             _db = db;
-            _fibCalcService = fibCalcService;
         }
 
-        public async Task<FibResultResponse> CalculateAsync(FibRequest model)
+        public async Task<FibResultResponse> CalculateAsync(FibResult model)
         {
-            var result = new FibResult
-            {
-                Result = _fibCalcService.Calculate(model.NumberToCalculate),
-                ElementNumber = model.NumberToCalculate
-            };
-
-            await _db.FibResults.AddAsync(result);
+            await _db.FibResults.AddAsync(model);
 
             await _db.SaveChangesAsync();
 
             return new FibResultResponse
             {
-                Id = result.Id,
-                ElementNumber = result.ElementNumber,
-                Result = result.Result
+                Id = model.Id,
+                ElementNumber = model.ElementNumber,
+                Result = model.Result
             };
         }
 
