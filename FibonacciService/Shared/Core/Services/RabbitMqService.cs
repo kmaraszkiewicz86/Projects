@@ -13,24 +13,29 @@ namespace Core.Services
     {
         public event EventHandler<BasicDeliverEventArgs> Received;
 
-        private RabbitMq _rabbitMqSettings;
+        private readonly RabbitMq _rabbitMqSettings;
         private ConnectionFactory _factory;
         private IConnection _connection;
         private IModel _channel;
         private EventingBasicConsumer _consumer;
 
+        public RabbitMqService(RabbitMq rabbitMq)
+        {
+            _rabbitMqSettings = rabbitMq;
+        }
+
         public RabbitMqService(IOptions<RabbitMq> rabbitMqSettingsOptions)
         {
             _rabbitMqSettings = rabbitMqSettingsOptions.Value;
-
-            _factory = new ConnectionFactory()
-            {
-                HostName = _rabbitMqSettings.Hostname
-            };
         }
 
         public void Start()
         {
+            _factory = new ConnectionFactory()
+            {
+                HostName = _rabbitMqSettings.Hostname
+            };
+
             _connection = _factory.CreateConnection();
             _channel = _connection.CreateModel();
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FibRest.Migrations
+namespace Core.Migrations
 {
     public partial class init : Migration
     {
@@ -12,7 +12,7 @@ namespace FibRest.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ElementNumber = table.Column<int>(nullable: false),
+                    ElementNumber = table.Column<long>(nullable: false),
                     Result = table.Column<long>(nullable: false)
                 },
                 constraints: table =>

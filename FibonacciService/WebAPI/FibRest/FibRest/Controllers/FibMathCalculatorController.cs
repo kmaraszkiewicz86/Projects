@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Core.Models;
 using Core.Services;
 using Microsoft.AspNetCore.Cors;
@@ -15,10 +14,13 @@ namespace FibRest.Controllers
     public class FibMathCalculatorController : ControllerBase
     {
         private readonly IFibDbService _fibDbService;
+        private readonly IRabbitMqService _rabbitMqService;
 
-        public FibMathCalculatorController(IFibDbService fibDbService)
+        public FibMathCalculatorController(IFibDbService fibDbService, 
+            IRabbitMqService rabbitMqService)
         {
             _fibDbService = fibDbService;
+            _rabbitMqService = rabbitMqService;
         }
 
 
@@ -42,7 +44,7 @@ namespace FibRest.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Calculate([FromBody] FibRequest model)
+        public IActionResult Calculate([FromBody] FibRequest model)
         {
 
             if (!ModelState.IsValid)
@@ -52,7 +54,8 @@ namespace FibRest.Controllers
 
             try
             {
-                return Ok(await _fibDbService.CalculateAsync(model));
+                _rabbitMqService.Send(model);
+                return Ok();
             }
             catch (Exception e)
             {

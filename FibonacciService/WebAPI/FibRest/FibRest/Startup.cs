@@ -1,3 +1,4 @@
+using Core.AppSettings;
 using Core.Core;
 using Core.Helpers;
 using Core.Services;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace FibRest
 {
@@ -36,6 +38,15 @@ namespace FibRest
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionBuilderHelper.GetDefaultConnectionString()));
 
+            var rabbitMq = ConnectionBuilderHelper.BuildDefault().GetSection(nameof(RabbitMq)).Get<RabbitMq>();
+
+            services.AddSingleton<IRabbitMqService>(options =>
+            {
+                var rabbitMqService = new RabbitMqService(rabbitMq);
+                rabbitMqService.Start();
+
+                return rabbitMqService;
+            });
             services.AddScoped<IFibCalcService, FibCalcService>();
             services.AddScoped<IFibDbService, FibDbService>();
 

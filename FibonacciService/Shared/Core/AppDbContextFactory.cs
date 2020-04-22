@@ -1,9 +1,11 @@
-﻿using Core.Helpers;
+﻿using Core.Core;
+using Core.Helpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
-namespace Core.Core
+namespace Core
 {
-    class AppDbContextFactory
+    public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {
         public AppDbContext CreateDbContext(string[] args)
         {
