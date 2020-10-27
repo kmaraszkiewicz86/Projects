@@ -92,3 +92,7 @@ FibonacciService/Services/FibonacciExecutor/FibonacciExecutor/obj/
 FibonacciService/Services/FibonacciExecutor/.vs/
 FibonacciService/Shared/Core/bin/
 FibonacciService/Shared/Core/obj/
+/SimpleAngularApp/02-Services/SimpleAmgularAppWebAPI/.vs/SimpleAmgularAppWebAPI
+/SimpleAngularApp/02-Services/SimpleAmgularAppWebAPI/SimpleAmgularAppWebAPI/bin/Debug/netcoreapp3.1
+/SimpleAngularApp/02-Services/SimpleAmgularAppWebAPI/SimpleAmgularAppWebAPI/obj
+/SimpleAngularApp/02-Services/SimpleAmgularAppWebAPI/SimpleAmgularAppWebAPI/SimpleAmgularAppWebAPI.csproj.user
